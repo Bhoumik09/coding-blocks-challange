@@ -1,0 +1,214 @@
+'use client'
+import { ChevronDown, HamburgerIcon } from "lucide-react";
+import Image from "next/image";
+import React, { Fragment, useRef, useState } from "react";
+import { Button } from "./ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import { NavHoverOptions } from "./NavElemOptions";
+import { FileText, Edit, Briefcase, Info, TrendingUp, PenLine, CheckCircle, Star } from "lucide-react";
+import clsx from "clsx";
+import { useResize } from "@/hooks/useResizeHook";
+
+export const Navbar: React.FC = () => {
+    const [hoverOptionItem, setActiveHoverOptionItem] = useState<null | number>(null);
+    const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+    // Show menu instantly and clear any close timeout
+    const showHoverMenu = (index: number) => {
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+        setActiveHoverOptionItem(index);
+    };
+
+    // Start a short timeout before closing the menu (prevents flicker)
+    const closeHoverMenu = () => {
+        closeTimeout.current = setTimeout(() => {
+            setActiveHoverOptionItem(null);
+        }, 500); // 120ms delay
+    };
+
+    // Cancel close if mouse re-enters menu quickly
+    const cancelCloseMenu = () => {
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    };
+
+    const navItemsArray = [
+        {
+            name: 'Resume',
+            icon: <FileText size={18} />,
+            options: [
+                {
+                    label: 'Writing Tips',
+                    description: 'Expert advice on crafting effective resumes.',
+                    icon: <PenLine size={16} />,
+                    suboptions: [
+                        { label: 'Action Verbs', description: 'Powerful verbs to use in resumes.', icon: <Star size={14} /> },
+                        { label: 'Summary Examples', description: 'How to write a strong summary.' },
+                    ],
+                },
+                {
+                    label: 'Formatting Examples',
+                    description: 'See real-world resume formatting samples.',
+                    icon: <CheckCircle size={16} />,
+                    suboptions: [
+                        { label: 'Chronological', description: 'Traditional format example.' },
+                        { label: 'Functional', description: 'Skills-based format example.', icon: <PenLine size={14} /> },
+                    ],
+                },
+                {
+                    label: 'Optimization',
+                    description: 'Tools to optimize your resume for ATS.',
+                    icon: <Star size={16} />,
+                    suboptions: [
+                        { label: 'ATS Checker', description: 'Test your resume for ATS compatibility.' },
+                        { label: 'Keyword Finder', description: 'Find and add relevant keywords.', icon: <CheckCircle size={14} /> },
+                    ],
+                },
+            ],
+            link: '',
+        },
+        {
+            name: 'Cover Letter ',
+            icon: <Edit size={18} />,
+            options: [
+                {
+                    label: 'Structure Guide',
+                    description: 'Step-by-step guide to structuring your cover letter.',
+                    icon: <PenLine size={16} />,
+                    suboptions: [
+                        { label: 'Opening Lines', description: 'How to start your cover letter.' },
+                        { label: 'Closing Statements', description: 'How to end professionally.', icon: <CheckCircle size={14} /> },
+                    ],
+                },
+                {
+                    label: 'Sample Letters',
+                    description: 'Browse professional cover letter samples.',
+                    icon: <Star size={16} />,
+                    suboptions: [
+                        { label: 'Entry Level', description: 'Sample for beginners.' },
+                        { label: 'Managerial', description: 'Sample for experienced roles.', icon: <PenLine size={14} /> },
+                    ],
+                },
+                {
+                    label: 'Common Mistakes',
+                    description: 'Avoid these pitfalls in your cover letter.',
+                    icon: <CheckCircle size={16} />,
+                    suboptions: [
+                        { label: 'Generic Content', description: 'Why personalization matters.' },
+                        { label: 'Typos', description: 'Proofreading tips.', icon: <Star size={14} /> },
+                    ],
+                },
+            ],
+            link: '',
+        },
+        {
+            name: 'Job Interview',
+            icon: <Briefcase size={18} />,
+            options: [
+                {
+                    label: 'Interview Prep',
+                    description: 'How to prepare for your next interview.',
+                    icon: <PenLine size={16} />,
+                    suboptions: [
+                        { label: 'Research the Company', description: 'Know your potential employer.', icon: <Star size={14} /> },
+                        { label: 'Dress Code', description: 'What to wear for interviews.' },
+                    ],
+                },
+                {
+                    label: 'Common Questions',
+                    description: 'Top questions and how to answer them.',
+                    icon: <CheckCircle size={16} />,
+                    suboptions: [
+                        { label: 'Behavioral', description: 'STAR method answers.' },
+                        { label: 'Technical', description: 'How to tackle technical rounds.', icon: <CheckCircle size={14} /> },
+                    ],
+                },
+                {
+                    label: 'Follow-up Emails',
+                    description: 'Templates for post-interview follow-up.',
+                    icon: <Star size={16} />,
+                    suboptions: [
+                        { label: 'Thank You Note', description: 'Expressing gratitude.' },
+                        { label: 'Status Inquiry', description: 'Politely asking for updates.', icon: <PenLine size={14} /> },
+                    ],
+                },
+            ],
+            link: '',
+        },
+        {
+            name: 'FAQs',
+            icon: <Info size={18} />,
+            options: [],
+            link: '/faq',
+        },
+        {
+            name: 'Career Growth',
+            icon: <TrendingUp size={18} />,
+            options: [],
+            link: '/career-growth',
+        },
+    ];
+    const width:number = useResize();
+    const showSnackBar:boolean=width<1000;
+    return (
+        <Fragment>
+            <nav className="w-full z-40 py-5 px-10 flex bg-gray-100  items-center justify-between gap-20 xl:gap-40 relative">
+                <div className="flex w-full gap-7 flex-1">
+                    <svg id="logo" xmlns="https://www.w3.org/2000/svg" width="143px" height="22px" viewBox="0 0 143 22"><g fill="#2DC08D"><path d="M100.561,6.134c-2.758,0-5.003,2.244-5.003,5.002v2.022c0,2.758,2.245,5.002,5.003,5.002 c1.457,0,2.766-0.63,3.681-1.627v1.627h1.321v-5.002v-0.661v-1.361C105.563,8.378,103.318,6.134,100.561,6.134 M104.241,12.498 v0.661c0,2.028-1.651,3.681-3.681,3.681c-2.03,0-3.682-1.652-3.682-3.681v-2.022c0-2.03,1.651-3.682,3.682-3.682 c2.029,0,3.681,1.652,3.681,3.682V12.498z"></path><path d="M87.857,6.134c-1.457,0-2.766,0.63-3.682,1.627V3.422h-1.321v7.714v2.769v4.257h1.321v-4.257v-2.769 c0-2.029,1.651-3.681,3.682-3.681c2.029,0,3.682,1.652,3.682,3.681v7.025h1.32v-7.025C92.859,8.378,90.615,6.134,87.857,6.134"></path><path d="M113.445,6.134c-1.457,0-2.766,0.63-3.681,1.627V6.134h-1.321v5.002v0.661v6.364h1.321v-6.364v-0.661 c0-2.029,1.651-3.681,3.681-3.681c2.03,0,3.682,1.652,3.682,3.681v7.025h1.32v-7.025C118.447,8.378,116.203,6.134,113.445,6.134"></path><path d="M74.641,6.134c-1.457,0-2.766,0.63-3.682,1.627V6.134h-1.321v5.002v0.661v6.364h1.321v-6.364v-0.661 c0-2.029,1.652-3.681,3.682-3.681c2.03,0,3.682,1.652,3.682,3.681v7.025h1.32v-7.025C79.643,8.378,77.398,6.134,74.641,6.134"></path><path d="M126.148,16.84c-2.029,0-3.681-1.652-3.681-3.681v-2.022c0-2.03,1.651-3.682,3.681-3.682 c1.561,0,2.955,0.988,3.473,2.458l1.248-0.439c-0.705-1.998-2.602-3.34-4.721-3.34c-2.758,0-5.002,2.244-5.002,5.003v2.022 c0,2.758,2.244,5.002,5.002,5.002c2.122,0,4.02-1.345,4.721-3.345l-1.246-0.438C129.106,15.852,127.711,16.84,126.148,16.84"></path><path d="M141.645,6.134v5.017c0,0.988-0.387,1.916-1.094,2.617l-2.588,2.588l-2.59-2.59 c-0.703-0.697-1.092-1.627-1.092-2.615V6.134h-1.32v5.017c0,1.344,0.526,2.605,1.48,3.551l3.521,3.521l3.52-3.52 c0.957-0.948,1.482-2.209,1.482-3.553V6.134H141.645z"></path><polygon points="58.256,11.294 66.356,11.294 66.356,9.973 58.256,9.973 58.256,4.743 66.746,4.743 66.746,3.422 56.936,3.422 56.936,9.973 56.936,11.294 56.936,18.16 66.94,18.16 66.94,16.84 58.256,16.84 "></polygon><path d="M35.472,21.453l0.062-0.062c0.025-0.028,0.046-0.054,0.066-0.081s0.04-0.057,0.058-0.086l0.048-0.072 l7.385-13.877c0.379-0.714,0.58-1.523,0.58-2.339c0-2.757-2.243-5-5-5c-1.186,0-2.338,0.423-3.242,1.191l-0.062,0.056l-7.315,6.426 l0.569,0.568c0.037,0.033,0.077,0.073,0.123,0.125c0.339,0.385,0.955,0.433,1.351,0.116l6.595-5.796 c0.556-0.474,1.257-0.732,1.981-0.732c1.679,0,3.045,1.366,3.045,3.046c0,0.503-0.117,0.981-0.35,1.421l-6.79,12.752L18.589,3.121 c-2.057-2.057-4.792-3.19-7.702-3.19c-2.91,0-5.645,1.133-7.701,3.19C1.132,5.175,0,7.91,0,10.822c0,2.912,1.132,5.647,3.186,7.701 c2.056,2.058,4.791,3.19,7.701,3.19c2.891,0,5.614-1.121,7.666-3.155l4.116-3.617l-0.56-0.561c-0.04-0.034-0.081-0.076-0.13-0.131 c-0.342-0.389-0.993-0.434-1.384-0.09l-3.343,2.938c-1.733,1.731-3.978,2.66-6.365,2.66c-2.388,0-4.633-0.929-6.319-2.617 c-1.685-1.685-2.614-3.93-2.614-6.319s0.929-4.634,2.614-6.319c1.686-1.688,3.931-2.617,6.319-2.617c2.387,0,4.632,0.929,6.32,2.617 l16.921,16.922c0.061,0.049,0.088,0.071,0.116,0.092c0.024,0.019,0.051,0.037,0.08,0.054l0.073,0.039 c0.044,0.021,0.074,0.032,0.105,0.043c0.027,0.01,0.056,0.019,0.086,0.025c0.033,0.008,0.066,0.014,0.099,0.02 c0.026,0.002,0.058,0.007,0.09,0.009l0.078,0.007c0.044-0.01,0.077-0.014,0.111-0.018c0.026-0.004,0.056-0.011,0.087-0.019 c0.033-0.009,0.06-0.017,0.086-0.026c0.032-0.01,0.06-0.021,0.09-0.035c0.034-0.017,0.059-0.029,0.084-0.045 c0.029-0.017,0.053-0.032,0.077-0.051C35.419,21.499,35.446,21.477,35.472,21.453"></path></g></svg>
+                    {!showSnackBar && navItemsArray.map((item, index) => (
+                        <div
+                            className="flex gap-2 group items-center font-semibold"
+                            key={index}
+                            onMouseOver={() => showHoverMenu(index)}
+                        >
+                            <span
+                                className={clsx(
+                                    "transition-all duration-300 group-hover:text-purple-300",
+                                    {
+                                        "text-purple-300": hoverOptionItem === index
+                                    }
+                                )}
+                            >
+                                {item.name}
+                            </span>
+                            {item.options.length > 0 && (
+                                <ChevronDown
+                                    className={clsx(
+                                        "transition-all duration-300 group-hover:text-purple-300",
+                                        {
+                                            "text-purple-300": hoverOptionItem === index
+                                        }
+                                    )}
+                                    size={16}
+                                    strokeWidth={2}
+                                />
+                            )}
+                        </div>
+                    ))}
+                    
+                </div>
+                {!showSnackBar && <div className="flex gap-5">
+                    <Button type={'button'} variant={'outline'} className=" border-2 border-black font-bold text-black rounded-sm hover:bg-gray-200 transition-all duration-500">Signin</Button>
+                    <Button type={'button'} variant={'outline'} className=" text-white bg-green-400 font-bold rounded-md hover:bg-green-300 hover:text-white transition-all duration-500">Get started</Button>
+                </div>}
+                {showSnackBar && 
+                    <HamburgerIcon size={16}/>
+                }
+            </nav>
+            <AnimatePresence >
+                {hoverOptionItem !== null && navItemsArray[hoverOptionItem].options.length > 0 && (
+                    <motion.div
+                        key={hoverOptionItem}
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: "easeIn" }}
+                        className="absolute left-0 top-full w-full bg-gray-50 h-[300px] flex z-50 shadow-lg"
+                        onMouseLeave={closeHoverMenu}
+                        onMouseEnter={cancelCloseMenu}
+                    >
+                        <NavHoverOptions options={navItemsArray[hoverOptionItem].options} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </Fragment>
+    );
+};

@@ -1,0 +1,8 @@
+.animation-img{
+    animation-name: 'rotateImg';
+    perspective:1000px;
+    transform: rotate3d();
+}
+@keyframes rotateImg {
+    
+}
