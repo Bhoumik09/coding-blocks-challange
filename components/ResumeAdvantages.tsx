@@ -61,10 +61,10 @@ const resumeFeatures = [
 export const ResumeAdvantages: React.FC = () => {
     return (
         <div className='relative flex flex-col'> {resumeFeatures.map((feature, index) => (
-            <div  key={`feature-${index}`} className={clsx('flex gap-10 h-[700px] min-h-[700px] max-lg:flex-col p-12', (
+            <div key={`feature-${index}`} className={clsx('flex gap-10 h-[700px] min-h-[700px] max-lg:flex-col p-12', (
                 index % 2 != 0 && 'flex-row-reverse'
             ))}>
-                <motion.div initial={{y:20, opacity:1}} whileInView={{y:0, opacity:1}} viewport={{once:false}} transition={{duration:0.3, delay:0.1, ease:'easeInOut'}}  className='relative flex-1'>
+                <motion.div initial={{ y: 20, opacity: 1 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: false }} transition={{ duration: 0.3, delay: 0.1, ease: 'easeInOut' }} className='relative flex-1'>
                     <h3 className='font-bold lg:text-3xl'>{feature.title}</h3>
                     <p className='pr-2'>{feature.subtitle}</p>
                     <motion.div variants={containerVariants} whileInView='show' initial='hidden' viewport={{ once: false }} className='flex flex-col '>

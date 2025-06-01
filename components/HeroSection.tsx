@@ -4,7 +4,8 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { Button } from './ui/button';
 import { ResumeCarousal } from './ResumeCarousal';
-import { Home } from 'lucide-react';
+import { Footprints, Home, PackagePlus, PawPrint } from 'lucide-react';
+import { StarRating } from './StarRating';
 
 const imagesArr = [
     'https://enhancv.com/_next/static/images/resume3-fdd7e3eafb8f16ef8e0aa6f5ef523dca.webp',
@@ -29,8 +30,8 @@ export const HeroSection: React.FC = () => {
     }, [controls, rotation]);
 
     return (
-        <div className='relative'>
-            <div className='absolute rounded-full opacity-85 z-0 inset-0 flex just pointer-events-none items-center bottom-40 left-40 '>
+        <div className='relative '>
+            <div className='absolute  rounded-full opacity-85 z-0 inset-0 hidden xl:flex just pointer-events-none items-center bottom-40 left-40 '>
                 <div className='bg-gradient-to-r absolute left-3/12 rounded-full opacity-85 blur-3xl from-blue-400 to-blue-300  h-70 w-80   ' />
                 <div className='bg-gradient-to-r rounded-full left-4/12 absolute   opacity-85 blur-3xl from-green-200 to-green-400 h-70 w-80   ' />
                 <div className='bg-gradient-to-r rounded-full absolute left-5/12 opacity-85 blur-3xl from-blue-100 to-blue-200 h-70 w-80   ' />
@@ -54,7 +55,8 @@ export const HeroSection: React.FC = () => {
                         <Button type={'button'} variant={'outline'} className="text-white bg-green-400 py-4 text-lg font-bold rounded-md hover:bg-green-300 hover:text-white transition-all duration-500">BUILD YOUR RESUME</Button>
                         <Button type={'button'} variant={'outline'} className="border-2 border-black font-bold py-4 text-lg text-black rounded-sm hover:bg-gray-200 transition-all duration-500">GET YOUR RESUME SCORE</Button>
                     </div>
-                    <div className="text-left mt-5 mb-10 text-lg opacity-70">Excellent 4,662 Reviews</div>
+                    <div className="text-left mt-5 mb-5 text-lg opacity-70">Excellent 4,662 Reviews</div>
+                    <StarRating rating={4}/>
                     <div className='mt-20 font-medium text-2xl opacity-70 text-left'>
                         Pick a resume template and build your resume in <br /> minutes!
                     </div>
@@ -100,25 +102,29 @@ export const HeroSection: React.FC = () => {
             <div className="w-full relative z-10">
                 <ResumeCarousal />
             </div>
-            <div className="w-full justify-center items-center h-64 gap-44 flex px-20 z-10">
+            <div className="w-full items-center text-center p-10 max-lg:flex-col justify-center   gap-44 flex px-20 z-10">
                 <div className='flex  flex-col items-center'>
-                    <Home size={40} className='text-green-300' />
+                    <Home size={50} className='text-green-300' />
 
-                    <div>
-                        hello this is bhoumik
+                    <div className='text-4xl font-semibold'>
+                       ATS-friendly professionally
+designed resumes
                     </div>
                 </div>
                 <div className='flex  flex-col items-center'>
-                    <Home size={40} className='text-green-300' />
+                    <Footprints size={50} className='text-green-300' />
 
-                    <div>
-                        hello this is bhoumik
+                    <div className='text-4xl font-semibold'>
+                        Change the font, color
+and background combinations
+
                     </div>
                 </div>
                 <div className='flex  flex-col items-center'>
-                    <Home size={40} className='text-green-300' />
-                    <div>
-                        hello this is bhoumik
+                    <PackagePlus size={50} className='text-green-300' />
+                    <div className='text-4xl font-semibold'>
+                        Two-column, single-column,
+and multi-page layouts
                     </div>
                 </div>
             </div>

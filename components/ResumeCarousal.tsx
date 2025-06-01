@@ -15,7 +15,6 @@ export const ResumeCarousal: React.FC = () => {
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
     const imagesArr = Array.from({ length: 10 }).fill('https://cdn.enhancv.com/images/1098/i/aHR0cHM6Ly9jZG4uZW5oYW5jdi5jb20vcHJlZGVmaW5lZC1leGFtcGxlcy91MGdNWVpUc1JkdjVqUDU4U3lVd3QyZEExMlhPVkttcUk0YXg0ZHdUL2ltYWdlLnBuZw~~.png')
     return (
-        // 50% on small screens and 33% on larger screens.
         <Carousel className='px-15' opts={{ loop: true,  }} plugins={[
             Autoplay({
                 delay: 4000,
@@ -27,7 +26,7 @@ export const ResumeCarousal: React.FC = () => {
             <CarouselContent>
                 {
                     imagesArr?.map((image, index) => (
-                        <CarouselItem key={`corousal-${index}`} className="md:basis-1/3 lg:basis-1/5" >
+                        <CarouselItem key={`corousal-${index}`} className=" md:basis-1/2 lg:basis-1/3" >
                             <div className="p-1">
                                 <Card className=' hover:bg-green-200 transition-colors duration-500 p-2 bg-gray-500/10' onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)}>
 

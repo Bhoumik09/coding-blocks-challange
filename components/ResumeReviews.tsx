@@ -1,19 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, ArrowRight, ExternalLink } from "lucide-react"
+import { StarRating } from "./StarRating"
 
-const StarRating = ({ rating = 5 }: { rating?: number }) => {
-    return (
-        <div className="flex space-x-1">
-            {[...Array(5)].map((_, i) => (
-                <Star
-                    key={i}
-                    className={`h-5 w-5 ${i < rating ? "fill-emerald-400 text-emerald-400" : "fill-gray-300 text-gray-300"}`}
-                />
-            ))}
-        </div>
-    )
-}
+
 
 export default function ResumeReviews() {
     return (

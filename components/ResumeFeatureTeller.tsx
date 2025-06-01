@@ -7,7 +7,6 @@ export const ResumeFeatureTeller = () => {
     return (
 
         <section className="relative min-h-[600px] overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-teal-600 px-6 py-16 lg:px-8">
-            {/* Background decorative elements */}
             <div className="absolute animate-pulse inset-0 overflow-hidden">
                 <div className="absolute -right-32 top-1/4 h-96 w-96 rounded-full border border-white/10"></div>
                 <div className="absolute -right-16 top-1/2 h-64 w-64 rounded-full border border-white/10"></div>
@@ -16,7 +15,6 @@ export const ResumeFeatureTeller = () => {
 
             <div className="relative mx-auto max-w-7xl">
                 <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-                    {/* Left content */}
                     <div className="flex flex-col justify-center space-y-6">
                         <h1 className="text-4xl font-bold leading-tight text-white lg:text-5xl xl:text-6xl">
                             Resumes optimized for applicant tracking systems (ATS)
