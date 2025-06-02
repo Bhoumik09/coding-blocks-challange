@@ -31,14 +31,13 @@ export const HeroSection: React.FC = () => {
 
     return (
         <div className='relative '>
-            <div className='absolute  rounded-full opacity-85 z-0 inset-0 hidden xl:flex just pointer-events-none items-center bottom-40 left-40 '>
-                <div className='bg-gradient-to-r absolute left-3/12 rounded-full opacity-85 blur-3xl from-blue-400 to-blue-300  h-70 w-80   ' />
-                <div className='bg-gradient-to-r rounded-full left-4/12 absolute   opacity-85 blur-3xl from-green-200 to-green-400 h-70 w-80   ' />
-                <div className='bg-gradient-to-r rounded-full absolute left-5/12 opacity-85 blur-3xl from-blue-100 to-blue-200 h-70 w-80   ' />
-
-                <div className='bg-gradient-to-r rounded-full absolute left-6/12  opacity-85 blur-3xl from-purple-200 to-purple-300 h-90 w-80   ' />
-                <div className='bg-gradient-to-r rounded-full absolute left-7/12 opacity-2xl blur-3xl from-red-200 to-red-300 h-90 w-80   ' />
-                <div className='bg-gradient-to-r rounded-full absolute left-8/12 opacity-90 blur-3xl from-pink-200 to-pink-300 h-96 w-80   ' />
+            <div className='absolute max-lg:justify-center  rounded-full opacity-85 z-0 inset-0 flex max-lg:flex-col just pointer-events-none items-center bottom-40 left-40 '>
+                <div className='bg-gradient-to-r max-lg:top-2 absolute lg:left-3/12 rounded-full opacity-85 blur-3xl from-blue-400 to-blue-300 h-20 w-30   lg:h-40 lg:w-50   xl:h-70 xl:w-80   ' />
+                <div className='bg-gradient-to-r max-lg:top-6 rounded-full lg:left-4/12 absolute   opacity-85 blur-3xl from-green-200 to-green-400 h-20 w-30  lg:h-40 lg:w-50 xl:h-70 xl:w-80    ' />
+                <div className='bg-gradient-to-r max-lg:top-10 rounded-full absolute lg:left-5/12 opacity-85 blur-3xl from-blue-100 to-blue-200 h-20 w-30  lg:h-40 lg:w-50  xl:h-70 xl:w-80   ' />
+                <div className='bg-gradient-to-r max-lg:top-14 rounded-full absolute lg:left-6/12  opacity-85 blur-3xl from-purple-200 to-purple-300 h-20 w-30  lg:h-40 lg:w-50  xl:h-70 xl:w-80   ' />
+                <div className='bg-gradient-to-r max-lg:top-20 rounded-full absolute lg:left-7/12 opacity-2xl blur-3xl from-red-200 to-red-300  h-20 w-30  lg:h-40 lg:w-50  xl:h-70 xl:w-80  ' />
+                <div className='bg-gradient-to-r max-lg:top-24 rounded-full absolute lg:left-8/12 opacity-90 blur-3xl from-pink-200 to-pink-300 h-20 w-30  lg:h-40 lg:w-50 xl:h-70 xl:w-80   ' />
 
             </div>
 

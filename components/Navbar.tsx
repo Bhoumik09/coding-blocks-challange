@@ -1,5 +1,5 @@
 'use client'
-import { ChevronDown, HamburgerIcon } from "lucide-react";
+import { ChevronDown, HamburgerIcon, List, ListCollapse, ListEnd, ListIcon } from "lucide-react";
 import Image from "next/image";
 import React, { Fragment, useRef, useState } from "react";
 import { Button } from "./ui/button";
@@ -191,7 +191,7 @@ export const Navbar: React.FC = () => {
                     <Button type={'button'} variant={'outline'} className=" text-white bg-green-400 font-bold rounded-md hover:bg-green-300 hover:text-white transition-all duration-500">Get started</Button>
                 </div>}
                 {showSnackBar && 
-                    <HamburgerIcon size={16}/>
+                    <ListIcon size={20}/>
                 }
             </nav>
             <AnimatePresence >

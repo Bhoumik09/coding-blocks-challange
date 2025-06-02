@@ -46,9 +46,9 @@ export const ResumeFeatureTeller = () => {
                             className=" absolute w-full top-0"
 
                         >
-                            <Card className="absolute right-0 top-8 w-80 bg-white/95 p-4 shadow-xl backdrop-blur-sm">
+                            <Card className="absolute right-0 top-8 w-60 lg:w-80 bg-white/95 p-2 lg:p-4 shadow-xl backdrop-blur-sm">
                                 <div className="flex items-center space-x-3">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100">
+                                    <div className="flex h-6 w-6 lg:h-12 lg:w-12 items-center justify-center rounded-lg bg-purple-100">
                                         <FileText className="h-6 w-6 text-purple-600" />
                                     </div>
                                     <span className="text-lg font-semibold text-gray-800">Readable contact information</span>
